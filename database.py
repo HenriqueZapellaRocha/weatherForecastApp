@@ -16,10 +16,10 @@ class DataBase:
     def __init__(self):
             self.connection = sqlite3.connect("data.db")
             self.pointer = self.connection.cursor()
-            self.createTables(self.pointer)
+            self.__createTables(self.pointer)
  
     #if the db does not exist, creates the tables
-    def createTables(self,pointer: Cursor) -> bool:
+    def __createTables(self,pointer: Cursor) -> bool:
         pointer.execute("CREATE TABLE IF NOT EXISTS TOKENS(token TEXT)")
         pointer.execute("CREATE TABLE IF NOT EXISTS CITIES(name TEXT, id INTEGER)")
         return True
