@@ -38,8 +38,13 @@ class DataBase:
     #get the api token from db 
     def getToken(self) -> str:
         response = self.pointer.execute("SELECT token FROM TOKENS")
-        return response.fetchone()[0]
+        result = response.fetchone()
+        if result is not None:
+            return result[0]
+        else:
+            return None
     
+    #insert a new city in db
     def instertCity(self, cityName:str, cityId: int):
         self.pointer.execute("INSERT INTO CITIES VALUES (?, ?)", (cityName, cityId))
         self.connection.commit()

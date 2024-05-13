@@ -2,11 +2,13 @@ import requests
 import ApiException
 from database import DataBase 
 from ApiCommunication import *
+from Facade import *
 
 db = DataBase.getInstance()
 
 print(db)
-db.insterToken( "1234")
-db.updateToken("32156")
-db.getToken()
-db.instertCity("porto alegre", 2540)
+
+if verifyExistingToken() == True:
+    print("dint")
+else:
+    insertTokenInDb('1234')
