@@ -1,6 +1,7 @@
 import requests
 import ApiException
-from database import DataBase
+from database import DataBase 
+from ApiCommunication import verifyCitiesAddedInApi, nameCityByiD
 
 db = DataBase.getInstance()
 
