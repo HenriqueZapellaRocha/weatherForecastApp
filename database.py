@@ -48,3 +48,13 @@ class DataBase:
     def instertCity(self, cityName:str, cityId: int):
         self.pointer.execute("INSERT INTO CITIES VALUES (?, ?)", (cityName, cityId))
         self.connection.commit()
+    
+    #get the id of a city by the city name
+    def getCityId(self,cityName: str) -> int:
+        response = self.pointer.execute("SELECT id FROM CITIES WHERE name = ?", (cityName,))
+        result = response.fetchone()
+        if result is not None:
+            return result
+        else:
+            return None
+    

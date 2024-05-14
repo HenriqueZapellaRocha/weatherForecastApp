@@ -5,6 +5,8 @@ import webbrowser
 import TokenGUI
 import PrincipalWindowGUI
 
+DataBase.getInstance().instertCity("Sao Paulo", 3477)
+
 def principalWindow():
     print("im in princioapl")
     PrincipalWindowGUI.mainScreenGUI()

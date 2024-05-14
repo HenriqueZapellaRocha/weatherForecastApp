@@ -1,6 +1,17 @@
 from tkinter import *
 from customtkinter import *
 from PIL import Image
+from Facade import *
+
+
+
+def updateInformations(textImage,mainScreen, cityComboBox):
+    #update the text in the label 
+    result = currentWeatherr(cityComboBox.get())
+    textImage.configure(text=str(result['temperature'])+"c°")
+
+    #update the GUI
+    mainScreen.update()
 
 def mainScreenGUI():
     mainScreen = CTk()
@@ -33,22 +44,20 @@ def mainScreenGUI():
 
     citieChoiceConfButton = CTkButton(mainScreen, 
                                     text="send",
-                                    command=mostrar_selecao) 
+                                    command=lambda: updateInformations(textImage, mainScreen, cityComboBox)) 
     citieChoiceConfButton.pack()
 
 
     frameWeather = CTkFrame(mainScreen, width=600, height= 550)
     frameWeather.place(x=53, y=120)
-    citieChoiceConfButton2 = CTkButton(frameWeather, 
-                                    text="send",
-                                    command=mostrar_selecao) 
+
 
     image =CTkImage(light_image=Image.open("/Users/henriquezapellarocha/Downloads/realistic/200px/1.png"),
                     dark_image=Image.open("/Users/henriquezapellarocha/Downloads/realistic/200px/1.png"),
                     size=(50,50))
 
     textImage = CTkLabel(frameWeather, 
-                    text=" -0 C°",
+                    text=" -0c°",
                     font=("San Francisco", 70),
                     image=image,
                     compound="bottom",
