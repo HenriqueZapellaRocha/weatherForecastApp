@@ -10,7 +10,8 @@ def verifyCitiesAddedInApi(token:str) -> Response:
         return None
     else:
         return r.json()['locales']
-    
+
+#return the name of the city by the id
 def nameCityByiD(token: str, cityId: int) -> Response:
     url =  'http://apiadvisor.climatempo.com.br/api/v1/locale/city/3477?token='+token
     r = requests.get(url)
