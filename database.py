@@ -57,4 +57,12 @@ class DataBase:
             return result
         else:
             return None
+        
+    def getCityName(self,cityId: int) -> str:
+        response = self.pointer.execute("SELECT id FROM CITIES WHERE id = ?", (cityId,))
+        result = response.fetchone()
+        if result is not None:
+            return result[0]
+        else:
+            return None        
     

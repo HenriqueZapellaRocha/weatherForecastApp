@@ -1,7 +1,7 @@
 from tkinter import *
 from customtkinter import * 
 import webbrowser
-from Facade import insertTokenInDb
+from Facade import insertTokenInDb, updateCitiesFromApiToDb
 
 set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 set_appearance_mode("system")
@@ -12,6 +12,7 @@ def open_link(event):
     #insert the token in the db getitng the information in the entry 
 def getToken(window, entry):
     insertTokenInDb(entry.get())
+    updateCitiesFromApiToDb(entry.get())
     window.destroy()
     return
 

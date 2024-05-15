@@ -22,4 +22,8 @@ def currentWeatherr(cityName: str):
         return currentWeather(token, cityId)
     else:
         None
-    
+
+def updateCitiesFromApiToDb(token: str):
+    result = verifyCitiesAddedInApi(token)
+    for id in result:
+        DataBase.getInstance().instertCity(nameCityByiD(token, id), id)

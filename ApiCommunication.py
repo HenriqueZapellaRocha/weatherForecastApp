@@ -1,8 +1,9 @@
+from typing import List
 from requests import *
 import requests
 
 #verify cities registered in api on this token
-def verifyCitiesAddedInApi(token:str) -> Response:
+def verifyCitiesAddedInApi(token:str) -> List[str]:
     url =  'http://apiadvisor.climatempo.com.br/api-manager/user-token/'+token+'/locales'
     r = requests.get(url)
     #verify if th response is a error, if it's return none, else returne the cities id registered in api

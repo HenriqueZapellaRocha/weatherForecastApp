@@ -1,3 +1,4 @@
 .VENV?
-data.db
+*db
+*sql
 __pycache__

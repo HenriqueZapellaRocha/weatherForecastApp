@@ -8,6 +8,7 @@ from Facade import *
 def updateInformations(textImage,mainScreen, cityComboBox):
     #update the text in the label 
     result = currentWeatherr(cityComboBox.get())
+    print(result)
     textImage.configure(text=str(result['temperature'])+"c°")
 
     #update the GUI
@@ -34,7 +35,7 @@ def mainScreenGUI():
                         font=("San Francisco", 15),
                         text="Chossen the city")
     cititesText.pack()
-    cities = ["Porto Alegre", "Sao Paulo"] # MUDAR PARA RESULTADO DE CONSULTA AO BANCO DE DADOS
+    cities = ["Porto Alegre", "São Paulo"] # MUDAR PARA RESULTADO DE CONSULTA AO BANCO DE DADOS
     cityComboBox = CTkComboBox(mainScreen, 
                             values=cities)
 
