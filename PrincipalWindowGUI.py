@@ -39,7 +39,7 @@ def mainScreenGUI():
 
     cititesText = CTkLabel(mainScreen, 
                         font=("San Francisco", 15),
-                        text="Chossen the city")
+                        text="Choose the city")
     cititesText.pack()
     cities = getAllCtitiesInDb() 
     cityComboBox = CTkComboBox(mainScreen, 

@@ -16,7 +16,7 @@ def insertTokenInDb(token: str):
 def currentWeatherr(cityName: str):
     
     token = DataBase.getInstance().getToken()
-    cityId = DataBase.getInstance().getCityId(cityName)
+    cityId = DataBase.getInstance().getCityId(cityName)[0]
     
     if token and cityId != None:
         return currentWeather(token, cityId)
