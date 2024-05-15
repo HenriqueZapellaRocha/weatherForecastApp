@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Cursor
+from typing import Tuple
 
 class DataBase:
     __instance = None
@@ -66,3 +67,20 @@ class DataBase:
         else:
             return None        
     
+    def getCities(self) -> Tuple:
+        response = self.pointer.execute("SELECT name FROM CITIES")
+        result = response.fetchone()
+        if result is not None:
+            return result
+        else:
+            return None
+        
+    def isTheCityOnDb(self, cityName: str) -> bool:
+        response = self.pointer.execute("SELECT name FROM CITIES WHERE name = ", (cityName,))
+        result = response.fetchone()
+        if result is not None:
+            return True
+        else:
+            return False
+        
+        

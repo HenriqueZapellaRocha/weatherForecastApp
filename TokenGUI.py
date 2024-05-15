@@ -12,7 +12,7 @@ def open_link(event):
     #insert the token in the db getitng the information in the entry 
 def getToken(window, entry):
     insertTokenInDb(entry.get())
-    updateCitiesFromApiToDb(entry.get())
+    updateCitiesFromApiToDb()
     window.destroy()
     return
 

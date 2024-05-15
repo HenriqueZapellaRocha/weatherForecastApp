@@ -4,15 +4,22 @@ from PIL import Image
 from Facade import *
 
 
-
-def updateInformations(textImage,mainScreen, cityComboBox):
+def updateInformations(textImage,mainScreen, cityComboBox, frameWeather):
     #update the text in the label 
     result = currentWeatherr(cityComboBox.get())
-    print(result)
-    textImage.configure(text=str(result['temperature'])+"c°")
-
-    #update the GUI
-    mainScreen.update()
+    
+    if result != None:
+        image =CTkImage(light_image=Image.open("Icons/"+str(result['icon'])+".png"),
+                dark_image=Image.open("Icons/"+str(result['icon'])+".png"),
+                size=(50,50))
+        print(result)
+        textImage.configure(text=str(result['temperature'])+"c°")
+        textImage.configure(image=image)
+        frameWeather.place(x=53, y=120)
+        textImage.place(x=215, y =0)
+        #update the GUI
+        mainScreen.update()
+        print("passed")
 
 def mainScreenGUI():
     mainScreen = CTk()
@@ -26,16 +33,11 @@ def mainScreenGUI():
     mainScreen.resizable(width=False, height=False)
 
 
-    #AQUI TORNA VISIVEL O FRAME 
-    def mostrar_selecao():
-        print(cityComboBox.get())
-
-
     cititesText = CTkLabel(mainScreen, 
                         font=("San Francisco", 15),
                         text="Chossen the city")
     cititesText.pack()
-    cities = ["Porto Alegre", "São Paulo"] # MUDAR PARA RESULTADO DE CONSULTA AO BANCO DE DADOS
+    cities = getAllCtitiesInDb() 
     cityComboBox = CTkComboBox(mainScreen, 
                             values=cities)
 
@@ -45,25 +47,21 @@ def mainScreenGUI():
 
     citieChoiceConfButton = CTkButton(mainScreen, 
                                     text="send",
-                                    command=lambda: updateInformations(textImage, mainScreen, cityComboBox)) 
+                                    command=lambda: updateInformations(textImage, mainScreen, cityComboBox, frameWeather)) 
     citieChoiceConfButton.pack()
 
 
     frameWeather = CTkFrame(mainScreen, width=600, height= 550)
-    frameWeather.place(x=53, y=120)
-
-
-    image =CTkImage(light_image=Image.open("/Users/henriquezapellarocha/Downloads/realistic/200px/1.png"),
-                    dark_image=Image.open("/Users/henriquezapellarocha/Downloads/realistic/200px/1.png"),
-                    size=(50,50))
+    
+    frameWeather.place_forget()
 
     textImage = CTkLabel(frameWeather, 
                     text=" -0c°",
                     font=("San Francisco", 70),
-                    image=image,
+                    image=None,
                     compound="bottom",
                     padx=4
                     )
-    textImage.place(x=215, y =0)
+    textImage.place_forget()
 
     mainScreen.mainloop()
